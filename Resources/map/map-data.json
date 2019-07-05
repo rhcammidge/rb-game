@@ -1,0 +1,20 @@
+{
+    "allMaps" :
+[
+    {
+        "map_layer_name":"LAYER_TERRAIN",
+        "layer":1,
+        "sprite_sheet":"map/graphics-tiles-waterflow"
+    },
+    {
+        "map_layer_name":"LAYER_GROUND",
+        "layer":2,
+        "sprite_sheet":"map/ground_tiles"
+    },
+    {
+        "map_layer_name":"LAYER_TREES",
+        "layer":3,
+        "sprite_sheet":"map/object- layer"
+    }
+]
+}
