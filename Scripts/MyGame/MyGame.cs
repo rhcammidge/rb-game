@@ -42,39 +42,15 @@ public class MyGame : RB.IRetroBlitGame
         return true;
     }
 
-    float characterX = 0;
-    float characterY = 0;
+    Character mainCharacter = new Character(0, 0);
 
     /// <summary>
     /// Update, your game logic should live here. Update is called at a fixed interval of 60 times per second.
     /// </summary>
     public void Update()
     {
-        if (RB.ButtonPressed(RB.BTN_SYSTEM))
-        {
-            Application.Quit();
-        }
-
-        if(RB.KeyDown(KeyCode.W))
-        {
-            characterY -= 1;
-        }
-        
-        if(RB.KeyDown(KeyCode.A))
-        {
-            characterX -= 1;
-        }
-        
-        if(RB.KeyDown(KeyCode.S))
-        {
-            characterY += 1;
-        }
-        
-        if(RB.KeyDown(KeyCode.D))
-        {
-            characterX += 1;
-        }
-        
+        Input.checkSystemInput();
+        Input.checkCharacterInput(mainCharacter);
     }
 
     /// <summary>
@@ -85,17 +61,12 @@ public class MyGame : RB.IRetroBlitGame
         RB.Clear(new Color32(127, 213, 221, 255));
 
         Vector2i mapDrawPos = new Vector2i();
-        mapDrawPos.x = (int) (-(characterX));
-        mapDrawPos.y = (int) (-(characterY));
+        mapDrawPos.x = (int) (-(mainCharacter.positionX));
+        mapDrawPos.y = (int) (-(mainCharacter.positionY));
         Map.drawMap(mapDrawPos, mapLayers);
-        // Print "Hi there" centered in a rectangular area near the top of the screen
-        //RB.Print(new Rect2i(0, (RB.DisplaySize.height / 2) - 48, RB.DisplaySize.width, 32), Color.black, RB.ALIGN_H_CENTER, "Hi there!");
-
-        // Draw some ground
-        //RB.DrawEllipseFill(new Vector2i(RB.DisplaySize.width / 2, RB.DisplaySize.height - 24), new Vector2i(RB.DisplaySize.width / 5 * 4, RB.DisplaySize.height / 2), new Color32(74, 198, 138, 255));
-
+ 
         // Draw character
-        var position = new Vector2i(characterX - (RB.SpriteSize().width / 2), characterY - (RB.SpriteSize().height/2));
+        var position = new Vector2i(mainCharacter.positionX - (RB.SpriteSize().width / 2), mainCharacter.positionY - (RB.SpriteSize().height/2));
         int spriteIndex = ((int)RB.Ticks / 20) % 2;
 
         // Draw character shadow

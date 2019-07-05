@@ -1,13 +1,24 @@
 using System;
 using System.IO;
 
-/**
-    Load Map Resources (Layers and sprite sheets)
- */
-public class Map
-{   
+public class LayerMaps
+{
+    public LayerMap[] allMaps;
+
     
-    public static LayerMap[] loadMapFiles(string mapName)
+}
+
+public class LayerMap
+{    
+    public string map_layer_name;
+    public int layer;
+    public string sprite_sheet;
+}
+
+public class Map
+{
+
+  public static LayerMap[] loadMapFiles(string mapName)
     {
         Vector2i mapDestPos = new Vector2i(0, 0);
         Vector2i sourceChunkPos = new Vector2i(0, 0);
@@ -45,4 +56,5 @@ public class Map
             RB.DrawMapLayer(m.layer, mapDrawPos);
         }
     }
+
 }
