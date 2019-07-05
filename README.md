@@ -15,5 +15,5 @@ Coming Soon
 
 ### Links
 ----
-RetroBlit - https://pixeltrollgames.itch.io/retroblit 
-GameAssets - http://opengameart.org/
+RetroBlit - https://pixeltrollgames.itch.io/retroblit  
+GameAssets - http://opengameart.org/  
