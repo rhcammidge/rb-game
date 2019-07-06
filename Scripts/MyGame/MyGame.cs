@@ -53,7 +53,7 @@ public class MyGame : RB.IRetroBlitGame
         Input.checkCharacterInput(mainCharacter);
     }
 
-    Vector2i cameraPos;
+   
 
     /// <summary>
     /// Render, your drawing code should go here.
@@ -62,20 +62,7 @@ public class MyGame : RB.IRetroBlitGame
     {
         RB.Clear(new Color32(127, 213, 221, 255));
 
-        //  Figure out where the camera should be
-        if ( mainCharacter.position.x - 16 < cameraPos.x ) {
-            cameraPos.x = mainCharacter.position.x - 16;
-        }
-        if ( mainCharacter.position.x + 32 > cameraPos.x + RB.DisplaySize.width ) {
-            cameraPos.x = mainCharacter.position.x - RB.DisplaySize.width + 32;
-        }
-        if ( mainCharacter.position.y - 16 < cameraPos.y ) {
-            cameraPos.y = mainCharacter.position.y - 16;
-        }
-        if ( mainCharacter.position.y + 32 > cameraPos.y + RB.DisplaySize.height ) {
-            cameraPos.y = mainCharacter.position.y - RB.DisplaySize.height + 32;
-        }
-        RB.CameraSet(cameraPos);
+        Camera.placeCamera(mainCharacter);        
         
         Map.drawMap(new Vector2i(0, 0), mapLayers);
  
