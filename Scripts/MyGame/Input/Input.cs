@@ -10,22 +10,22 @@ public class Input
 
         if (RB.KeyDown(KeyCode.W))
         {
-            c.positionY -= 1;
+            c.position.y -= 1;
         }
 
         if (RB.KeyDown(KeyCode.A))
         {
-            c.positionX -= 1;
+            c.position.x -= 1;
         }
 
         if (RB.KeyDown(KeyCode.S))
         {
-            c.positionY += 1;
+            c.position.y += 1;
         }
 
         if (RB.KeyDown(KeyCode.D))
         {
-            c.positionX += 1;
+            c.position.x += 1;
         }
 
         return c;

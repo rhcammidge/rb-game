@@ -4,14 +4,17 @@
  */
 public class Character
 {
-    public float positionX, positionY;
+
+    public Vector2i position;
 
     /**
      * Builds Character with default locations x, y
      */
-    public Character(float x, float y)
+    public Character(int x, int y)
     {
-        this.positionX = x;
-        this.positionY = y;
+        position.x = x;
+        position.y = y;
     }
+
+
 }

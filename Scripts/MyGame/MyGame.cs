@@ -53,6 +53,8 @@ public class MyGame : RB.IRetroBlitGame
         Input.checkCharacterInput(mainCharacter);
     }
 
+    Vector2i cameraPos;
+
     /// <summary>
     /// Render, your drawing code should go here.
     /// </summary>
@@ -60,13 +62,25 @@ public class MyGame : RB.IRetroBlitGame
     {
         RB.Clear(new Color32(127, 213, 221, 255));
 
-        Vector2i mapDrawPos = new Vector2i();
-        mapDrawPos.x = (int) (-(mainCharacter.positionX));
-        mapDrawPos.y = (int) (-(mainCharacter.positionY));
-        Map.drawMap(mapDrawPos, mapLayers);
+        //  Figure out where the camera should be
+        if ( mainCharacter.position.x - 16 < cameraPos.x ) {
+            cameraPos.x = mainCharacter.position.x - 16;
+        }
+        if ( mainCharacter.position.x + 32 > cameraPos.x + RB.DisplaySize.width ) {
+            cameraPos.x = mainCharacter.position.x - RB.DisplaySize.width + 32;
+        }
+        if ( mainCharacter.position.y - 16 < cameraPos.y ) {
+            cameraPos.y = mainCharacter.position.y - 16;
+        }
+        if ( mainCharacter.position.y + 32 > cameraPos.y + RB.DisplaySize.height ) {
+            cameraPos.y = mainCharacter.position.y - RB.DisplaySize.height + 32;
+        }
+        RB.CameraSet(cameraPos);
+        
+        Map.drawMap(new Vector2i(0, 0), mapLayers);
  
         // Draw character
-        var position = new Vector2i(mainCharacter.positionX - (RB.SpriteSize().width / 2), mainCharacter.positionY - (RB.SpriteSize().height/2));
+        var position = new Vector2i(mainCharacter.position.x, mainCharacter.position.y);
         int spriteIndex = ((int)RB.Ticks / 20) % 2;
 
         // Draw character shadow
