@@ -12,8 +12,13 @@
         "sprite_sheet":"map/ground_tiles"
     },
     {
-        "map_layer_name":"LAYER_TREES",
+        "map_layer_name":"LAYER_CLIFF",
         "layer":3,
+        "sprite_sheet":"map/Cliff_tileset"
+    },
+    {
+        "map_layer_name":"LAYER_TREES",
+        "layer":4,
         "sprite_sheet":"map/object- layer"
     }
 ]

@@ -8,8 +8,19 @@
   </objectgroup>
  </tile>
  <tile id="24">
+  <properties>
+   <property name="blocked" type="bool" value="true"/>
+  </properties>
   <objectgroup draworder="index">
    <object id="1" x="0.25" y="-0.5" width="31.75" height="31"/>
+  </objectgroup>
+ </tile>
+ <tile id="37">
+  <properties>
+   <property name="blocked" type="bool" value="true"/>
+  </properties>
+  <objectgroup draworder="index">
+   <object id="1" x="0.5" y="0.125" width="31.25" height="32"/>
   </objectgroup>
  </tile>
  <tile id="38">
@@ -18,6 +29,9 @@
   </objectgroup>
  </tile>
  <tile id="39">
+  <properties>
+   <property name="blocked" type="bool" value="true"/>
+  </properties>
   <objectgroup draworder="index">
    <object id="1" x="-0.75" y="0.75" width="33.5" height="32.5"/>
   </objectgroup>

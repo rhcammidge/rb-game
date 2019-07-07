@@ -4,28 +4,33 @@ using UnityEngine;
 public class Input
 {
 
-    public static Character checkCharacterInput(Character c)
+    public static Character checkCharacterInput(Map curMap, Character c)
     {
-        
+        Vector2i newPos = c.position;
 
         if (RB.KeyDown(KeyCode.W))
         {
-            c.position.y -= 1;
+            newPos.y -= 1;
         }
 
         if (RB.KeyDown(KeyCode.A))
         {
-            c.position.x -= 1;
+            newPos.x -= 1;
         }
 
         if (RB.KeyDown(KeyCode.S))
         {
-            c.position.y += 1;
+            newPos.y += 1;
         }
 
         if (RB.KeyDown(KeyCode.D))
         {
-            c.position.x += 1;
+            newPos.x += 1;
+        }
+
+        if (!curMap.isTileBlocked(newPos))
+        {
+            c.position = newPos;
         }
 
         return c;

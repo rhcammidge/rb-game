@@ -17,8 +17,17 @@ public class LayerMap
 
 public class Map
 {
+    private string mapName;
 
-  public static LayerMap[] loadMapFiles(string mapName)
+    LayerMap[] mapLayers;
+
+    public Map(string mapName)
+    {
+        this.mapName = mapName;
+        loadMapFiles(mapName);
+    }
+
+    public void loadMapFiles(string mapName)
     {
         Vector2i mapDestPos = new Vector2i(0, 0);
         Vector2i sourceChunkPos = new Vector2i(0, 0);
@@ -44,17 +53,31 @@ public class Map
         RB.SpriteSheetSetup(0, "MyGame/MySprites", new Vector2i(16, 16));
         RB.SpriteSheetSet(0);
 
-        return layerMaps.allMaps;
+        mapLayers = layerMaps.allMaps;
 
     }
 
 
-    public static void drawMap(Vector2i mapDrawPos, LayerMap[] allMaps)
+    public void drawMap(Vector2i mapDrawPos)
     {
-        foreach(LayerMap m in allMaps)
+        foreach(LayerMap m in mapLayers)
         {
             RB.DrawMapLayer(m.layer, mapDrawPos);
         }
     }
 
+    public bool isTileBlocked(Vector2i tilePos)
+    {
+        Vector2i tileIdx = tilePos;
+        foreach (LayerMap m in mapLayers)
+        {
+            var tileProps = RB.MapDataGet<TMXProperties>(m.layer, tilePos);
+            if (tileProps != null && tileProps.GetBool("blocked"))
+            {
+                return true;
+            }
+        }
+        
+        return false;
+    }
 }

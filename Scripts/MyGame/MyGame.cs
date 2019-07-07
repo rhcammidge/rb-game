@@ -29,7 +29,7 @@ public class MyGame : RB.IRetroBlitGame
         return hw;
     }
 
-    LayerMap[] mapLayers;
+    Map curMap;
     
     public const string mapName = "map/testmap";
     /// <summary>
@@ -38,7 +38,7 @@ public class MyGame : RB.IRetroBlitGame
     /// <returns>Return true if successful</returns>
     public bool Initialize()
     {
-        mapLayers = Map.loadMapFiles(mapName);        
+        curMap = new Map(mapName);      
         return true;
     }
 
@@ -50,7 +50,7 @@ public class MyGame : RB.IRetroBlitGame
     public void Update()
     {
         Input.checkSystemInput();
-        Input.checkCharacterInput(mainCharacter);
+        Input.checkCharacterInput(curMap, mainCharacter);
     }
 
    
@@ -64,12 +64,13 @@ public class MyGame : RB.IRetroBlitGame
 
         Camera.placeCamera(mainCharacter);        
         
-        Map.drawMap(new Vector2i(0, 0), mapLayers);
+        curMap.drawMap(new Vector2i(0, 0));
  
         // Draw character
         var position = new Vector2i(mainCharacter.position.x, mainCharacter.position.y);
         int spriteIndex = ((int)RB.Ticks / 20) % 2;
 
+        
         // Draw character shadow
         //RB.DrawEllipseFill(position + new Vector2i(RB.SpriteSize().width / 2, RB.SpriteSize().height - 1), new Vector2i(6 + spriteIndex, 2), new Color32(54, 150, 104, 255));
 
