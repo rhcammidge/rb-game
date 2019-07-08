@@ -38,7 +38,8 @@ public class MyGame : RB.IRetroBlitGame
     /// <returns>Return true if successful</returns>
     public bool Initialize()
     {
-        curMap = new Map(mapName);      
+        curMap = new Map(mapName);
+        mainCharacter.size = new Vector2i(16, 16);
         return true;
     }
 
@@ -62,7 +63,7 @@ public class MyGame : RB.IRetroBlitGame
     {
         RB.Clear(new Color32(127, 213, 221, 255));
 
-        Camera.placeCamera(mainCharacter);        
+        Camera.placeCamera(mainCharacter, curMap);        
         
         curMap.drawMap(new Vector2i(0, 0));
  

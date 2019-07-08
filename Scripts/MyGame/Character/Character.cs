@@ -5,7 +5,7 @@
 public class Character
 {
 
-    public Vector2i position;
+    public Vector2i position, size;
 
     /**
      * Builds Character with default locations x, y

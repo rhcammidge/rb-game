@@ -10,25 +10,25 @@ public class Input
 
         if (RB.KeyDown(KeyCode.W))
         {
-            newPos.y -= 1;
+            newPos.y -= 10;
         }
 
         if (RB.KeyDown(KeyCode.A))
         {
-            newPos.x -= 1;
+            newPos.x -= 10;
         }
 
         if (RB.KeyDown(KeyCode.S))
         {
-            newPos.y += 1;
+            newPos.y += 10;
         }
 
         if (RB.KeyDown(KeyCode.D))
         {
-            newPos.x += 1;
+            newPos.x += 10;
         }
 
-        if (!curMap.isTileBlocked(newPos))
+        if (!curMap.isTileBlocked(newPos, c.size))
         {
             c.position = newPos;
         }
