@@ -1,11 +1,12 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 public class LayerMaps
 {
     public LayerMap[] allMaps;
 
-    
+    public String objectLayerName;
 }
 
 public class LayerMap
@@ -19,6 +20,7 @@ public class Map
 {
     private string mapName;
     public Vector2i mapSize;
+    public List<BadGuy> badGuys = new List<BadGuy>();
 
     LayerMap[] mapLayers;
 
@@ -44,11 +46,21 @@ public class Map
 
         foreach (LayerMap m in layerMaps.allMaps)
         {
+            
             RB.MapLoadTMXLayer(map, m.map_layer_name, m.layer);
             RB.SpriteSheetSetup(m.layer, m.sprite_sheet, new Vector2i(32, 32));
             RB.MapLayerSpriteSheetSet(m.layer, m.layer);
         }
 
+        var objects = map.objectGroups[layerMaps.objectLayerName].objects;
+        foreach (var curObj in objects)
+        {
+            //  Make a new badguy for this object
+            BadGuy curBadGuy = new BadGuy(curObj.rect.x, curObj.rect.y);
+            curBadGuy.size = new Vector2i(16, 16);
+
+            badGuys.Add(curBadGuy);
+        }
 
         // You can load a spritesheet here
         RB.SpriteSheetSetup(0, "MyGame/MySprites", new Vector2i(16, 16));
@@ -58,13 +70,20 @@ public class Map
         mapSize = map.size * 32;
     }
 
-
+    public void drawCharacters()
+    {
+        foreach ( var curObj in badGuys )
+        {
+            curObj.draw();
+        }
+    }
     public void drawMap(Vector2i mapDrawPos)
     {
         foreach (LayerMap m in mapLayers)
         {
             RB.DrawMapLayer(m.layer, mapDrawPos);
         }
+        drawCharacters();
     }
 
     public bool isPointBlocked(Vector2i tilePos)

@@ -1,0 +1,52 @@
+{
+	"main":
+	{
+		"spriteStartIndex":0,
+		"numFrames":2,
+		"hp":10		
+	}
+	"badguys": 
+	[
+
+		{
+			"type": "badguy1",
+			"spriteStartIndex":0,
+			"numFrames":2,
+			"hp":10,
+			"moveSpeed":1,
+			"movePattern":"slow"			
+		},
+		{
+			"type": "badguy2",
+			"spriteStartIndex":0,
+			"numFrames":2,
+			"hp":50,
+			"moveSpeed":1,
+			"movePattern":"passive"
+		}
+	]
+	"goodguys":
+	[
+		{
+			"type": "davidoff",
+			"name": "Sir Davidoff The Caravan Dweller",
+			"spriteStartIndex":0,
+			"numFrames":2,
+			"moveSpeed":0,			
+		},		
+		{
+			"type": "jay",
+			"name": "Lady Jay The Caravan Baker",
+			"spriteStartIndex":0,
+			"numFrames":2,
+			"moveSpeed":0,			
+		},
+		{
+			"type": "gard",
+			"name": "Captain Gard The Grizzled Salty Sailor",
+			"spriteStartIndex":0,
+			"numFrames":2,
+			"moveSpeed":0,			
+		}
+	]
+}

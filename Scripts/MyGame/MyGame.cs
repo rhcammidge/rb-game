@@ -67,16 +67,10 @@ public class MyGame : RB.IRetroBlitGame
         
         curMap.drawMap(new Vector2i(0, 0));
  
-        // Draw character
-        var position = new Vector2i(mainCharacter.position.x, mainCharacter.position.y);
-        int spriteIndex = ((int)RB.Ticks / 20) % 2;
-
-        
         // Draw character shadow
         //RB.DrawEllipseFill(position + new Vector2i(RB.SpriteSize().width / 2, RB.SpriteSize().height - 1), new Vector2i(6 + spriteIndex, 2), new Color32(54, 150, 104, 255));
 
-        // Draw a sprite just below
-        RB.DrawSprite(spriteIndex, position);
+        mainCharacter.draw();
  
         // Print some more text
         /**RB.Print(
